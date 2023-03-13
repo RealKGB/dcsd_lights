@@ -1,8 +1,8 @@
-# DCSD_LIGHTS
-A simple project to light up the LEDs on the Apple DCSD cable arbitrarily.
+# dcsd_lights
+A simple project to light up the LEDs on the Alex DCSD cable arbitrarily. It should support the DCSD 3.1, or the USB-C version, but mine has not arrived yet so I can't test. If it doesn't, I'll update it to work.
 The project is based on Mathieu Hautebas' DCSD_STATUS available on https://github.com/matteyeux/dcsd_status
 
-The DCSD cable is a factory cable used most likely for testing at Foxconn for the Apple devices. The cable features a gray box with 3 LEDs labeled "Busy", "Pass" and "Fail". Orange, Red and Yellow when lit. Some extensive research has been carried out by `lululombard`. His research can be found on <a href = "https://github.com/lululombard/DCSD-reverse-engineering"> DCSD reverse engineering </a>
+The Alex DCSD cable is a factory cable used most likely for testing at Foxconn for the Apple devices. The cable features a gray, black, or gold box with 3 LEDs labeled "Pass", "Busy", "Fail", which are colored green, yellow, and red respectively. Some extensive research has been carried out by `lululombard`. His research can be found on <a href = "https://github.com/lululombard/DCSD-reverse-engineering"> DCSD reverse engineering </a>
 
 The cable can be controlled using LibFTDI as demonstrated in the program and in Mathieu and lululombard's examples.
 
@@ -10,33 +10,34 @@ The cable can be controlled using LibFTDI as demonstrated in the program and in 
 Before compiling, install LIBFTDI on your Mac.
 
 ```bash
-$ wget https://www.intra2net.com/en/developer/libftdi/download/libftdi1-1.4.tar.bz2
-$ tar jxvf libftdi1-1.4.tar.bz2
-$ cd libftdi1-1.4
-$ cmake . && sudo make install
+brew install libftdi
+brew link libftdi
 ```
-Or use Homebrew:
-```bash
-$ brew install libftdi
-$ brew link libftdi
-```
+
 ### Compiling
 ```bash
-$ cd <path of the source>
-$ make
+make
 ```
 ### Usage
-Once compiled and started, the program detects the connected DCSD Alex cable and initializes a "Christmas Light Pattern" which lights a random LED each second for a few seconds. 
+Once compiled and started, the program ensures you have an Alex connected, then prompts you to enter a number, which corresponds to a given light pattern.
 
 After the Christmas Light Pattern procedure, you can specify the number of the LED you want to light up.
 ```
-1 = Green LED
-2 = Orange LED
-3 = Red Led
-4 = All on
+1 = green LED
+2 = yellow LED
+3 = red LED
+4 = all LEDs
+5 = green and yellow LEDs
+6 = red LED
+7 = yellow and green LEDs
+8 = red and yellow LEDs
+9 = red LED
+10 = red and green LEDs
+11 = yellow and green LEDs
+12+ = all LEDs
 ```
 ### Credits
-Special thanks to https://twitter.com/matteyeux and https://twitter.com/lululombard
+Special thanks to https://twitter.com/matteyeux and https://twitter.com/lululombard. Base project by https://twitter.com/FCE365.
 
 ### Contact me
-Twitter: https://twitter.com/FCE365
+Twitter: https://twitter.com/ragnarok0273
