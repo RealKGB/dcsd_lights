@@ -5,8 +5,8 @@ CFLAGS ?=
 LDFLAGS ?=
 
 ifeq ($(shell uname), Darwin)
-	CFLAGS += -c -Wall -I. -I/usr/local/Cellar/libftdi/*/include/libftdi1/ -g
-	LDFLAGS += -L/usr/local/Cellar/libftdi/*/lib -L/usr/local/Cellar/libusb/1.0.22/lib -lftdi1 -lusb-1.0
+	CFLAGS += -c -Wall -I. -I/usr/local/Cellar/libftdi/1.5_2/include/libftdi1/ -g
+	LDFLAGS += -L/usr/local/Cellar/libftdi/1.5_2/lib -L/usr/local/Cellar/libusb/1.0.22/lib -lftdi1 -lusb-1.0
 endif
 
 OBJECTS = program.o

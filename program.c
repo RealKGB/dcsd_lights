@@ -17,11 +17,14 @@ int lightOn (int led){
     unsigned char buf[1];
     static int led_status = -1;
     
-    if (led == led_status)
-    {
+    if (led == led_status){
         return 0;
     } else {
         led_status = led;
+    }
+    
+    if (led == 69){
+        printf("geosn0w is a dumbass\n");
     }
     
     ftdi = ftdi_new();
@@ -62,17 +65,18 @@ int lightOn (int led){
 int main()
 {
     printf("Program to interface with the lights on the Alex DCSD cables.\nBased on @matteyeux's DCSD_STATUS project.\nUpdated fork of geosn0w's thing, without the useless christmas light pattern.\n\n");
-    printf("1 = green LED\n2 = yellow LED\n3 = red LED\n4 = all on\n5 = green and yellow LEDs\n7 = yellow and green LEDs\n10 = red and green LEDs\n\n");
+    printf("0 = all LEDs off\n1 = green LED\n2 = yellow LED\n3 = red LED\n4 = all on\n5 = green and yellow LEDs\n7 = yellow and green LEDs\n10 = red and green LEDs\n\n");
     do {
-        printf("Turn on: ");
         lightOn(ledNumber);
+        printf("Turn on: ");
         
         /*
+        0 = all LEDs off
         1 = green LED
         2 = yellow LED
         3 = red LED
         4 = all LEDs
-        5 = green and yellow LEDs
+        5 = yellow and green LEDs
         6 = red LED
         7 = yellow and green LEDs
         8 = red and yellow LEDs
