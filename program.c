@@ -1,4 +1,3 @@
-// This project is built by GeoSn0w (@FCE365) on top of Mathieu Hautebas' DCSD STATUS project that can be found at
 // https://github.com/matteyeux/dcsd_status
 
 #include <stdio.h>
@@ -7,31 +6,11 @@
 #include <signal.h>
 #include <string.h>
 #include <ftdi.h>
-#include <unistd.h>
 
-int christmasLightPattern();
-int light_up (int led);
-int led_to_light = 0;
+int lightOn (int led);
+int ledNumber = 0;
 
-int christmasLightPattern(){
-    printf("[i] Doing Christmas Light Pattern\n");
-    light_up(4);
-    sleep(1);
-    light_up(2);
-    sleep(1);
-    light_up(1);
-    sleep(1);
-    light_up(3);
-    sleep(1);
-    light_up(4);
-    sleep(1);
-    light_up(1);
-    sleep(1);
-    light_up(2);
-    sleep(1);
-    return 0;
-}
-int light_up (int led){
+int lightOn (int led){
     struct ftdi_context *ftdi;
     int fopen;
     long int tab[5] = {0xF0, 0xF2, 0xF8, 0xF1, 0xFB};
@@ -40,7 +19,6 @@ int light_up (int led){
     
     if (led == led_status)
     {
-        //Ignore instruction to light the same LED
         return 0;
     } else {
         led_status = led;
@@ -56,7 +34,7 @@ int light_up (int led){
     fopen = ftdi_usb_open(ftdi, 0x0403, 0x8a88);
     
     if (fopen < 0){
-        fprintf(stderr, "\n[!] Cannot find the DCSD Cable connected. Please plug it in and try again!\n");
+        fprintf(stderr, "\n[!] Cannot find a connected DCSD Cable. Please plug it in and try again!\n");
         exit(EXIT_FAILURE);
     }
     
@@ -83,16 +61,28 @@ int light_up (int led){
 
 int main()
 {
-    system("clear");
-    printf("DCSD LIGHTS by GeoSn0w (@FCE365)\nSpecial thanks to @matteyeux for his DCSD_STATUS project.\n\n");
-    light_up(4);
-    christmasLightPattern();
+    printf("Program to interface with the lights on the Alex DCSD cables.\nBased on @matteyeux's DCSD_STATUS project.\nUpdated fork of geosn0w's thing, without the useless christmas light pattern.\n\n");
+    printf("1 = green LED\n2 = yellow LED\n3 = red LED\n4 = all on\n5 = green and yellow LEDs\n7 = yellow and green LEDs\n10 = red and green LEDs\n\n");
     do {
-        
         printf("Turn on: ");
-        light_up(led_to_light);
+        lightOn(ledNumber);
         
-    } while (scanf("%d", &led_to_light)); //Get user input
+        /*
+        1 = green LED
+        2 = yellow LED
+        3 = red LED
+        4 = all LEDs
+        5 = green and yellow LEDs
+        6 = red LED
+        7 = yellow and green LEDs
+        8 = red and yellow LEDs
+        9 = red LED
+        10 = red and green LEDs
+        11 = yellow and green LEDs
+        12+ = all LEDs
+         */
+        
+    } while (scanf("%d", &ledNumber)); //Get user input
     
 	return 0;
 }
