@@ -19,23 +19,20 @@ brew link libftdi
 make
 ```
 ### Usage
+
 Once compiled and started, the program ensures you have an Alex connected, then prompts you to enter a number, which corresponds to a given light pattern.
 
-After the Christmas Light Pattern procedure, you can specify the number of the LED you want to light up.
 ```
 1 = green LED
 2 = yellow LED
 3 = red LED
 4 = all LEDs
-5 = green and yellow LEDs
-6 = red LED
-7 = yellow and green LEDs
-8 = red and yellow LEDs
-9 = red LED
-10 = red and green LEDs
-11 = yellow and green LEDs
-12+ = all LEDs
+5+ = any combo, could be one, two, or three LEDs. Changes every time the cable is unplugged and replugged. The program segfaults if you input a number higher than 277
 ```
+
+Alternatively, you can pass arguments to it. Passing one number will light that LED until another command is sent to override it. Example: `dcsd_lights 3` will light the red LED, until another command is sent to override it, such as `dcsd_lights 1`, which would then enable the green LED.
+If you add a second number, the LED will enable itself only for however many seconds you passed as the second number. Example:
+`dcsd_lights 2 5` will enable the yellow LED, and after 5 seconds it will turn off. Note that other commands in your script will have to wait, so if you need to do something during those 5 seconds, it is advised to use a single number and override it later with `dcsd_lights 0` to turn it off, or another argument of your choice.
 ### Credits
 Special thanks to https://twitter.com/matteyeux and https://twitter.com/lululombard. Base project by https://twitter.com/FCE365.
 
