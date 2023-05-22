@@ -1,5 +1,5 @@
 # dcsd_lights
-A simple project to light up the LEDs on the Alex DCSD cable arbitrarily. It should support the DCSD 3.1, or the USB-C version, but mine has not arrived yet so I can't test. If it doesn't, I'll update it to work.
+A simple project to light up the LEDs on DCSD cables, with support for both Alex, 3.1, and 30-pin versions (tested).
 The project is based on Mathieu Hautebas' DCSD_STATUS available on https://github.com/matteyeux/dcsd_status
 
 The Alex DCSD cable is a factory cable used most likely for testing at Foxconn for the Apple devices. The cable features a gray, black, or gold box with 3 LEDs labeled "Pass", "Busy", "Fail", which are colored green, yellow, and red respectively. Some extensive research has been carried out by `lululombard`. His research can be found on <a href = "https://github.com/lululombard/DCSD-reverse-engineering"> DCSD reverse engineering </a>
